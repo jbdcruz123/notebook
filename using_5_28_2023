@@ -1,0 +1,38 @@
+//using keyword  5/28/2023 9pm
+
+In C++, the using keyword has multiple purposes, but one of its common uses is to bring specific 
+names or entire namespaces into the current scope. This allows you to use those names without 
+explicitly qualifying them with the namespace name.
+
+Here's an example that demonstrates the use of the using keyword to bring names into scope:
+
+#include <iostream>
+
+namespace MyNamespace {
+    void myFunction() {
+        std::cout << "Hello from MyNamespace!" << std::endl;
+    }
+}
+
+int main() {
+    using MyNamespace::myFunction;  // Bring myFunction into scope
+
+    myFunction();  // Call myFunction without qualifying it with namespace name
+
+    return 0;
+}
+
+In this example, the using namespace MyNamespace; directive brings all names from
+MyNamespace into the current scope. As a result, we can directly access myFunction() 
+without qualifying it with the namespace name.
+
+However, it's important to use the using directive with caution to avoid potential 
+aming conflicts or polluting the global namespace. It is generally recommended to use it 
+sparingly and explicitly specify only the names or namespaces you need to bring into scope 
+to maintain code clarity and prevent unintended side effects.
+
+
+
+
+
+
