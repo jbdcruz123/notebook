@@ -1,0 +1,49 @@
+lec 5/16/2023 3.20p
+
+nakuha ko idea sa ka-cprog. input whole string, with blocking integer and double
+https://en.cppreference.com/w/cpp/io/basic_istream/operator_gtgt
+
+// To keep things easy to manage, all reads from `std::cin` are line-oriented.
+// `std::getline()` consumes all characters, up to and including the line delimiter.
+// This is why `get_integer()` and `get_floating_point()` uses this function.
+bool get_string(std::string& output) {
+  // If an error occurs, `output` is left empty.
+  std::getline(std::cin, output);
+
+  bool fail = std::cin.fail();
+  std::cin.clear(); // clear error flags
+
+  return !fail;
+}
+
+bool get_integer(int& output) {
+  std::string s;
+  std::istringstream iss;
+
+  if ( !(get_string(s)) ) {
+    return false;
+  }
+
+  iss.str(s); // assign a new string buffer to the input stream
+  output = 0;
+  // If an error occurs, `output` is not modified.
+  iss >> output;
+
+  return !(iss.fail());
+}
+
+bool get_floating_point(double& output) {
+  std::string s;
+  std::istringstream iss;
+
+  if ( !(get_string(s)) ) {
+    return false;
+  }
+
+  iss.str(s); // assign a new string buffer to the input stream
+  output = 0;
+  // If an error occurs, `output` is not modified.
+  iss >> output;
+
+  return !(iss.fail());
+}
