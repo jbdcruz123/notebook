@@ -1,0 +1,55 @@
+late recording 5/10/2023 10p
+
+#include <iostream>
+template<typename T>
+class cltype {
+  T value;
+public:
+  using value_type = T;
+  cltype() : value(0) {}
+  cltype(T value) : value(value) {}
+  operator T() {
+    return value;
+  }
+};
+using clint = cltype<int>;
+using clshort = cltype<short>;
+using clfloat = cltype<float>;
+using cldouble = cltype<double>;
+template<typename L=clint, typename R=clfloat>
+L operator+(L &left, R &right) {
+  return L((typename L::value_type)left + (typename R::value_type)right);
+}
+int main() {
+  clint a(20), total;
+  clfloat b(5);
+  total = a + b;
+  std::cout << "\n\n\nint " << total << std::endl;
+  return 0;
+}#include <iostream>
+template<typename T>
+class cltype {
+  T value;
+public:
+  using value_type = T;
+  cltype() : value(0) {}
+  cltype(T value) : value(value) {}
+  operator T() {
+    return value;
+  }
+};
+using clint = cltype<int>;
+using clshort = cltype<short>;
+using clfloat = cltype<float>;
+using cldouble = cltype<double>;
+template<typename L=clint, typename R=clfloat>
+L operator+(L &left, R &right) {
+  return L((typename L::value_type)left + (typename R::value_type)right);
+}
+int main() {
+  clint a(20), total;
+  clfloat b(5);
+  total = a + b;
+  std::cout << "\n\n\nint " << total << std::endl;
+  return 0;
+}
