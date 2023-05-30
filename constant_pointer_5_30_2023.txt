@@ -1,0 +1,22 @@
+lecture 5/30/2023 9.44p  const pointers
+
+      int a = 10;
+      int b = 20;
+
+      //const int* p; pointer itself can change, but pointed to a variable cannot change
+      
+      //p = &a;
+
+      //p = &b;
+
+      //*p = 1;
+
+
+      int* const p= &a;  pointer itself cannot change, but pointed to a variable can change
+
+      p = &a;
+
+      p = &b;
+
+      //*p = 1;
+     
