@@ -1,0 +1,87 @@
+
+Variadic Template 5/30/2023
+
+Variadic templates in C++ are a powerful feature that allows you to define functions, classes, 
+or structs that can accept a variable number of template arguments. This enables you to write
+more flexible and generic code by handling an arbitrary number of arguments of different types.
+
+Variadic templates are typically used in combination with recursion or template metaprogramming
+techniques to process each argument in the parameter pack individually.
+
+Here's an example that showcases the usage of variadic templates:
+
+
+
+#include <iostream>
+
+
+//may error ito pag na run
+
+
+// Variadic template function that prints the arguments
+template<typename T, class ... Args>
+void printArguments(T arg, Args... args)
+{
+    std::cout << arg << std::endl;
+    printArguments(args...);
+}
+
+// Base case for the recursion
+template<typename T>
+void printArguments(T arg)
+{
+    std::cout << arg << std::endl;
+}
+
+int main()
+{
+    printArguments(1, 2.5, "Hello", 'A');
+    
+    return 0;
+}
+
+
+//////////////////////////////////
+
+//hindi kayang lagyan ng ibang parameter datatype ang function 
+#include <iostream>
+
+// Base case for the recursion
+void printArgs()
+{
+    std::cout << "No arguments." << std::endl;
+}
+
+// Recursive variadic template function to print arguments
+template<typename T, typename... Args>
+void printArgs(T arg, Args... args)
+{
+    std::cout << arg << std::endl;
+    printArgs(args...);
+}
+
+int main()
+{
+    printArgs(1, 2.5, "Hello", 'A');
+
+    return 0;
+}
+
+In this example, we have two functions: printArgs() and its recursive counterpart. The base case
+printArgs() is defined without any template parameters and serves as the stopping condition for
+the recursion. It simply prints a message stating that no arguments were provided.
+
+The recursive printArgs() function is defined with the template parameters typename T and 
+typename... Args. It takes the first argument arg of type T and the remaining arguments args of 
+types Args.... It prints the value of arg and then recursively calls itself with the remaining arguments args....
+
+In the main() function, we call printArgs() with four different arguments: an integer 1, a floating-point 
+number 2.5, a C-style string "Hello", and a character 'A'. The function recursively processes each argument 
+and prints it on a new line.
+
+output:
+1
+2.5
+Hello
+A
+No arguments.
