@@ -1,0 +1,53 @@
+
+//at runtime
+
+In C++, the terms "rvalue" and "lvalue" are used to classify expressions based on 
+their usage and whether they can appear on the left or right side of an assignment.
+ Understanding these terms is important for understanding concepts such as move 
+semantics, references, and function overloading.
+
+Rvalue:
+
+An rvalue is a temporary value that does not persist beyond the expression in which it appears.
+Rvalues can appear on the right side of an assignment but not on the left side.
+Examples of rvalues include literals (e.g., 42, "hello"), temporary objects, and the result
+ of an expression (e.g., a + b). Rvalues can be bound to rvalue references (e.g., int&&) or 
+const lvalue references (e.g., const int&). Lvalue:
+
+An lvalue refers to an object that has a name and persists beyond the expression in which it appears.
+Lvalues can appear on both the left and right sides of an assignment.
+Examples of lvalues include variables, named objects, and references.
+Lvalues can be bound to lvalue references (e.g., int&), const lvalue references (e.g., const int&),
+ and rvalue references if they are treated as an rvalue (e.g., std::move()).
+
+Here are some examples to illustrate the concepts:
+
+
+
+int main() {
+    int x = 42;         // x is an lvalue
+    int& lref = x;      // lref is an lvalue reference to x
+    const int& clref = x;  // clref is a const lvalue reference to x
+
+    int&& rref = 123;   // rref is an rvalue reference to the temporary value 123
+    const int&& crref = 456;  // crref is a const rvalue reference to the temporary value 456
+
+    // Assignments
+    x = 10;             // Valid: Modifying the lvalue x
+    rref = 789;         // Valid: Modifying the rvalue reference rref
+
+    int y = x;          // Valid: Copying the value of x to y
+    // int&& invalidRref = x;   // Error: Cannot bind an lvalue x to an rvalue reference
+
+    return 0;
+}
+
+In the example above, x is an lvalue because it has a name and persists beyond the assignment. 
+It can be modified and assigned to other variables. lref and clref are lvalue references to x 
+and can access and refer to its value.
+
+On the other hand, rref and crref are rvalue references. They can be used to bind to temporary values 
+or be assigned to with new rvalues.
+
+Understanding the distinction between rvalues and lvalues is important in C++ for efficient resource 
+management, move semantics, and function overloading based on value categories.
