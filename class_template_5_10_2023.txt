@@ -1,0 +1,79 @@
+practice 5/10/2023  8pm
+template pinasukan ng ibang class object 
+at inilabas ulit ang class object
+
+#include<iostream>
+#include<string>
+
+class clcar{//2
+      private:
+            int mbody;
+            
+      public:
+            int mpublic_body;
+            clcar( ){//5  
+                  mbody = 123;
+                  mpublic_body =  mbody;                                
+            } //5
+            
+
+            clcar(int inp ){//5  
+                  mbody = inp;
+                  mpublic_body =  mbody;                                
+            } //5
+
+            void fset(int inp ){//7
+
+                  mpublic_body = inp;
+            } //7    
+            
+            int fget( ){//7
+
+                  return mpublic_body;
+            } //7
+}; //2
+
+template<typename T>
+class clbrand {//2
+
+      std::string mbrand_name;
+      
+      
+      public:
+            T mcar;
+      
+            clbrand( ){//5
+                  
+                  std::cout << "\ninside constructor clbrand( ) " << "\n";
+                  
+            } //5
+
+            clbrand( T inp ): mcar( inp ){//5
+                  
+                  std::cout << "\ninside constructor clbrand(inp) " << inp.mpublic_body << "\n";
+                  mcar = inp;
+            } //5
+            
+            operator T(){//4
+
+                  //hindi ko mailabas ung value ng clcar object
+                  std::cout << "\ninside operator T" << "\n";
+                  return mcar;
+            }//4
+}; //2
+
+int main(void){//2
+      
+      clcar obj_base(4000);
+      clbrand<clcar> toyota;  
+      
+      toyota = obj_base;
+     
+      std::cout << "\n\nresult:" << "\n";
+          
+      std::cout <<  ( (clcar ) toyota).fget( ) ; //type cast to call member of clcar 
+   
+      std::cout << "\n\nexit... " << "\n";
+                        
+      return 0;
+}//2
