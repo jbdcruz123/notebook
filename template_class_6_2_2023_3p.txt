@@ -1,0 +1,75 @@
+
+
+//create record here 
+
+#include<iostream>
+
+class two_class;
+
+template<class one_tem= two_class>  
+class one_class;
+
+class two_class{
+
+        private:
+                int var;
+
+        public:
+                void set(int par){
+                        var = par;
+                }
+                int get(void ){
+                        return var;
+                }                 
+    
+};
+
+two_class elements_g[10];
+
+//template<class one_head_tem>
+template<class one_tem= two_class>  
+class one_class{
+        public:
+        
+        //pede din ideklare sa opertor overloading ung template
+        one_tem& operator[]( int ind){
+
+                return elements_g[ind];
+        }
+};
+
+void initial_(){
+
+        int x = 0;
+        for(int i ; i< 10 ; i+=1, x+=1 ) {
+
+                elements_g [i ].set( x +10);
+
+        }
+
+}
+
+
+int main(void) {
+
+        two_class val_obj;
+        one_class<two_class> obj;
+
+        initial_( );        
+        val_obj.set(10);
+
+        obj[0] = val_obj;
+
+        two_class catch_ = obj[0];
+
+        std::cout << "\n\nobj[0] " << catch_.get()  << "\n";
+        return 0;
+}
+
+
+
+
+
+
+
+
