@@ -1,0 +1,37 @@
+
+
+source:
+     https://stackoverflow.com/questions/3053561/how-do-i-assign-an-alias-to-a-function-name-in-c?fbclid=IwAR03c3ZcwWb4NapaTDqEKeJIFI2ZXwBH19Z-v2BSMvB8HwWNdGzVV4-hxJ8
+
+
+#include <iostream>
+#include <cstring>
+
+namespace rondb{
+
+        
+        typedef char* (*copy_alias)(char*, const char*); //para magamitng alias gamitin sa typedef
+
+        copy_alias kopyko = std::strcpy; //ipasa ung strcpy para sa final name
+                     
+}
+
+int main() {
+
+        char destination[20];
+        const char* source_ = "Hello, World!";
+
+        rondb::kopyko(destination, source_);
+        
+        std::cout << "\n\ndestination " << destination << "\n";
+        return 0;
+}
+
+
+
+
+
+
+
+
+
