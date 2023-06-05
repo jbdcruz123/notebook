@@ -1,0 +1,187 @@
+
+
+
+
+//lecture istringstream   6/5/2023
+
+/*
+std::istringstream ay object string na palabas sa buffer string
+  buffer_string >>  var     
+
+In C++, std::istringstream is a typedef for std::basic_istringstream<char>, so they are essentially 
+the same thing.
+
+The std::basic_istringstream is a template class that represents an input stream, allowing you to 
+read data from a string. It is a specialization of the std::basic_istream class template for the char 
+data type.
+
+The std::istringstream is a typedef of std::basic_istringstream<char>, which means it is a specific 
+instantiation of std::basic_istringstream for char data type. It provides all the functionality
+ of std::basic_istringstream specifically for strings of char characters.
+
+
+*/
+
+
+
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+ 
+int main(){
+
+        std::string input = "41 3.14 false hello world", input_two;
+        std::istringstream stream(input);
+
+        int n;
+        double f;
+        bool b;
+
+        //every >> operator gives a string delimeted by space
+        stream >> n >> f >> std::boolalpha >> b;
+        std::cout << "n = " << n << '\n'
+              << "f = " << f << '\n'
+              << "b = " << std::boolalpha << b << '\n';
+
+        // extract the rest using the streambuf overload
+        //show the last 2 remaing word
+        stream >> std::cout.rdbuf();
+
+        std::cout << "\n";
+        std::cout << stream.rdbuf()->str() << '\n';
+
+        std::cout << stream.str() << '\n';
+
+        stream >> input_two;
+
+        std::cout << input_two << '\n';
+
+        std::cout << "\nstarting to loop at stream" << "\n";
+
+        //restart the location of stream     
+        stream.clear();
+        stream.seekg(0, std::ios::beg);
+        
+        input_two = "";
+
+        //print it by word delimeter by space
+        while(stream >> input_two  ){
+
+                std::cout << "|" <<input_two << "|\n";
+        }
+
+     
+    /* note:
+    istringstream will print the character until it encounters " " space
+    it will stop
+    std::istringstream s1("Hello, world.");
+    std::string str_;
+
+    ex: 
+    s1 >> str_;   str_ will get Hello  
+        
+        */    
+
+
+}
+
+//////////
+//get() 
+/*
+In C++, the std::istringstream class provides the get() member function, which allows you to extract 
+a single character from the stream. It reads the next character from the input sequence and advances 
+the stream's internal position.
+
+get() returns int 
+*/
+
+
+#include <sstream>
+#include <iostream>
+ 
+int main()
+{
+    std::istringstream s1("Hello, world.");
+    int n = s1.str().size();
+
+    int index = 0;
+    while(index < n){
+        std::cout <<  (char) s1.get() << "\n";
+        index +=1; 
+    }
+
+}
+        
+
+
+////////////
+//rdbuf()
+
+/*
+class provides a member function called rdbuf() that allows you to access the underlying stream 
+buffer. This function returns a pointer to the associated std::basic_stringbuf object, which 
+represents the buffer for input/output operations.
+*/
+
+#include <iostream>
+#include <sstream>
+
+int main() {
+    std::string data = "Hello, World!";
+    std::istringstream myStream(data);
+
+    // Access the underlying stream buffer
+    std::basic_stringbuf<char>* buffer = myStream.rdbuf();
+
+    // Read data from the buffer using the buffer's member functions
+    char character;
+    while (buffer->sgetn(&character, 1)) {
+        std::cout << character << "\n";
+    }
+
+    //output print char one by one
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+#include <iostream>
+#include <sstream>
+#include <fstream>
+
+int main(){
+      
+
+        std::string out_str;
+        std::istringstream str_buf("abc");
+
+        str_buf.rdbuf()->str("12345");
+        
+        str_buf >> out_str;
+        std::cout << out_str;
+
+}
+
+
+
+
+*/
