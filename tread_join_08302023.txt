@@ -1,0 +1,122 @@
+
+
+
+//lecture on thread c++ 
+//ANG CODING EXAMPLE AY NASA BABA
+
+This error often occurs when the program is not properly linked with the pthread library. The 
+pthread_create function is part of the POSIX threads library, and you need to link your program 
+against it. The exact steps to do this might vary depending on your development environment, compiler, 
+and operating system.
+
+To fix this issue, you can try the following steps:
+
+Add the -pthread flag to your compilation command. This flag instructs the compiler to link the pthread 
+library.
+For example, if you're compiling from the command line using g++, you can use:
+
+sh
+Copy code
+
+g++ -pthread b.cpp -o b
+
+
+gumamit ng -pthread pag mag cocompile sa thread sa c++
+
+
+If you're using an Integrated Development Environment (IDE), find the project settings or compiler options 
+and add -pthread to the list of flags.
+
+If you're using a different compiler or environment, consult its documentation on how to link against the 
+pthread library.
+
+Keep in mind that linking against pthread is necessary when working with the <thread> header in C++ 
+because the standard thread library is often implemented using pthreads on Unix-like systems.
+
+If you're still facing issues after trying the above steps, please provide more information about your 
+development environment and the steps you're taking to compile your code, so I can provide more targeted 
+assistance.
+
+a refrence on thread
+https://en.cppreference.com/w/cpp/thread/thread
+
+
+////////////////////////////////////////
+//simple example of thread      use -pthread on compiling
+
+
+
+#include <iostream>
+#include <thread>
+
+void threadFunction() {
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "Thread ID: " << std::this_thread::get_id() << " Count: " << i << std::endl;
+    }
+}
+
+int main() {
+    std::cout << "Main Thread ID: " << std::this_thread::get_id() << std::endl;
+
+    std::thread t(threadFunction); // Create a new thread and run threadFunction
+    t.join(); // Wait for the thread to finish
+
+    std::cout << "Main thread finished." << std::endl;
+
+    return 0;
+}
+
+//output
+Main Thread ID: 140377781319488
+Thread ID: 140377781315328 Count: 0
+Thread ID: 140377781315328 Count: 1
+Thread ID: 140377781315328 Count: 2
+Thread ID: 140377781315328 Count: 3
+Thread ID: 140377781315328 Count: 4
+Main thread finished.
+
+
+
+
+
+/////////////////////////////////////////////
+
+#include <iostream>
+#include <thread>
+
+void threadFunction(int id) {
+    std::cout << "Thread ID: " << std::this_thread::get_id() << " ID: " << id << std::endl;
+}
+
+int main() {
+    std::cout << "Main Thread ID: " << std::this_thread::get_id() << std::endl;
+
+    std::thread threads[5];
+    
+    for (int i = 0; i < 5; ++i) {
+        threads[i] = std::thread(threadFunction, i);
+    }
+    
+    for (int i = 0; i < 5; ++i) {
+        threads[i].join();
+    }
+
+    std::cout << "Main thread finished." << std::endl;
+
+    return 0;
+}
+
+
+
+//output
+Main Thread ID: 140486666372928
+Thread ID: 140486666368768 ID: 0
+Thread ID: 140486657976064 ID: 1
+Thread ID: 140486649583360 ID: 2
+Thread ID: 140486568310528 ID: 3
+Thread ID: 140486559917824 ID: 4
+Main thread finished.
+
+
+
+
