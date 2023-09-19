@@ -1,0 +1,14 @@
+6/11/2023 
+declaring char of array [  ]  and std::string::substr(  )
+
+standard array length ng c string pag nag declare ng max index length, laging les 1 ung para sa null terminating
+
+ex: 
+ char s[5]="6789"; //array of char declared as [5] the 0 to 3 index pedeng lagyan ng char
+                            //ang ika 4rth ay null
+
+habang ang substr(  ) ng std::string ay
+
+substr( 0, 5 )    starting index 0, start count index ng 0 1 2 3 4
+
+ang 0 to 4 index ay ang count ng second parameter 5
