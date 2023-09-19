@@ -1,0 +1,210 @@
+
+
+filesystem library
+
+
+//main reference of filesystem
+https://en.cppreference.com/w/cpp/filesystem  
+
+//copy 
+https://en.cppreference.com/w/cpp/filesystem/copy
+
+//copy option ito u ng instruction sa 
+//sa function kung anu gagawin ng function
+//copy
+https://en.cppreference.com/w/cpp/filesystem/copy_options 
+
+//std::error_code ginagamit kung may error message
+//pag nag fail ung function
+https://en.cppreference.com/w/cpp/error/error_code
+
+//rename
+https://en.cppreference.com/w/cpp/filesystem/rename
+
+//delete file or folder
+https://en.cppreference.com/w/cpp/filesystem/remove
+
+//create directory
+https://en.cppreference.com/w/cpp/filesystem/create_directory   
+
+
+
+#include<iostream>
+#include<filesystem>
+#include<fstream>
+#include<sstream>
+
+void flush_(void);
+void getchar_( char&);
+void rename_( void);
+void delete_(  void );
+
+void delete_( void ){//2
+      std::string old_file,  to = "/data/data/com.termux/files/home/cpp/" ;            
+      
+      std::cout << "\n\ndelete mode\ninput file:  ";
+      std::cin >> old_file;
+      flush_(  );
+      to += old_file;
+      
+      if ( std::filesystem::remove( to  ) == 0){//3 
+            std::cout << "\ncannot delete the filed " << old_file << "\npress any..." ; 
+            flush_(  );  
+            return;
+      }//3
+      std::cout << "\nsucessfully delete the filed " << old_file << "\npress any..." ; 
+      flush_(  );
+}//2
+
+void getchar_( char &ch ) {//2
+
+      ch = getchar(  );
+      
+      if( ch != '\n' ) {//3
+            flush_( );
+            return;
+     }else {//3
+           ch = 0; 
+     }//3
+     
+}//2
+
+//use as a standby keypress
+//or use as flusher of char
+void flush_( void ){//2
+
+      char c=-1 ;
+      while(  c != '\n' and  c != 0){ //3
+            c  = getchar( );
+            
+            //std::cout << "\ndebug L11 c " << c 
+              // << ", c " << (int) c
+               //<< "\n";
+               
+      }//3
+      
+}///2
+
+void rename_(void  ) {//2
+      std::string from = "/data/data/com.termux/files/home/cpp/", 
+      to = "/data/data/com.termux/files/home/cpp/",
+      old_file, new_file;
+      
+      std::error_code err;
+      std::cout << "\n\nrename mode\nsa current folder lang effective\ninput old file name:  ";            
+      std::cin >> old_file;
+      flush_( );
+      
+      std::cout << "\n\ninput new file name:";
+      std::cin >> new_file;
+      flush_( );
+      
+      from += old_file;
+      to += new_file;
+      std::filesystem::rename( from, to, err );
+      
+      if( err.value( ) != 0 ){//3
+            // false
+            std::cout << "\nerror renaming the file " << old_file << "\npress any ";
+            
+      } else {//3
+            std::cout << "\nsucessfully renaming the file " << old_file << "\npress any ";
+            
+      }//3
+      flush_(  );
+            
+}//2
+
+int main(void) {//2
+
+      std::ifstream read_;
+      char ch;
+      std::string from = "/data/data/com.termux/files/home/storage/shared/mkb/", 
+      to = "/data/data/com.termux/files/home/cpp/", from_s;
+      
+      std::string s, s2;       
+      std::error_code  err;
+
+      while( ch != 'Q' and ch != 'q'  ) { //10
+
+             std::cout << "\n\ncreated on sept 2023 by rsm"  
+                << "\nc copy file to rsm"
+                << "\nd delete file to current directory"
+                << "\nr rename file to current directory"
+                << "\nq to exit"
+                << "\ninput mode:  ";
+
+             getchar_(ch  );
+             //std::cout << "\ndebug L21 ch " << ch 
+               // << ",ch " << (int) ch << "\n";
+                
+            if(  ch == 'C' or ch == 'c' ) {//20
+                   //copy mode
+                  while( true ){//21
+                        std::cout <<  "\n\ncopy mode: \nIkaw ba ang mag input ng file ? Y or N o B to back\npag N kukunin sa copyfile.txt\ninput:   ";      
+                        getchar_( ch );                             
+                        if( ch == 'Y' or ch == 'y') {//3
+
+                              //no code here       
+                              std::cout << "\nY na pili mo\nikaw mag input ng file\nitoy mangagaling sa mkb folder\nanu ung file:   ";     
+                              std::cin >> from_s;
+                              flush_( );                
+                         } else if( ch == 'N' or ch == 'n' ) {//3
+             
+                              std::cout << "\nHindi Y ang napili mo'\nsa copyfile.txt ko kukunin ang file";
+         
+                              s = from + "copyfile.txt";
+                              read_.open(  s, std::ios::out );
+             
+                              std::getline( read_ , from_s);           
+                              read_.close( );
+                  
+                              //std::cout << "\nL11 s " << from_s;
+     
+                        } else if( ch == 'B' or ch  == 'b') {//3
+                              std::cout << "\nB ay back ng 1\npress any...";
+                              flush_( );                        
+                              break;
+                        } else { //3  
+                  
+                              std::cout << "\ndapat Y or N lng ang pipiliin mo at hindi " << ch 
+                                 << "\npress any key ";
+                               flush_(  );
+                              continue;
+                        }//3
+       
+                         s = from + from_s;
+                         s2 =  to + from_s;
+                         std::filesystem::copy( s, s2, std::filesystem::copy_options::overwrite_existing, err );            
+                   
+                         if( err.value(  ) != 0 ) {//5
+                               std::cout << "\n\nfile ay hindi sucessful ung " << from_s;
+                                                
+                         }else { //5
+                              std::cout << "\n\nang file na " << from_s << " ay sucessful copied ";                
+                         }//5
+             
+                         std::cout << "\npress any key... ";
+                         flush_(  );
+                                           
+                  }//21
+                                      
+            } else if( ch == 'R' or ch == 'r' ) {//20   
+                  //rename file            
+                  rename_(  );
+            } else if( ch == 'D' or ch == 'd' ) {//20   
+                  //delete file
+                  delete_( );
+            }//20
+                                
+      }//10
+                                                                           
+      std::cout << "\n\nexit... ";
+      flush_(  );
+      
+      return 0;
+}//2
+
+
+
+
