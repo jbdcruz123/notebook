@@ -1,3 +1,17 @@
+//9/20/2023
+/*
+Important topic ng getchar at cout
+
+hiwalay ang stream out ng cout sa
+getchar pag nag input sa cout ay ma stock
+sa stream out ung newline \n
+
+ang getchar ay hindi mag antay ng user input
+tuloy tuloy na ma-discharge ang strean out
+      */
+
+
+
 #include<iostream>
 
 void flush_( void ){//2
