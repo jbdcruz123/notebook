@@ -1,0 +1,37 @@
+
+
+note del me
+
+
+9/21/2023
+ambiguous ay nag complie error sa magkahawig
+na function parameter at function name
+
+pede din na nadeclare mo sa main ay iba ung
+parameter kaya naging ambiguous
+ex
+
+void f_( int )
+
+..function implement
+void f_( int a, int b)  //hindi sila hawig
+               //ang unang function ay may 1
+            // na parameter at ung isa ay 
+      //2 ung parameter. akala ng compiler
+    //panibagong polimorphsim na function 
+    // si f_(int )
+
+ex
+
+//kunwari gumawa ako ng function name 
+//na strlen kahit may kamukha ito sa library
+//bastat hindi kamukha sa parameter ay ma 
+//dedetect ng compiler
+
+int strlen( int )   //sa library ay strlen( char* )
+
+
+strlen( 10) // tatangapin ang int value na 10
+
+
+
