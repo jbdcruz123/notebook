@@ -1,0 +1,53 @@
+
+/*
+
+ diagram of parts of lambda func
+ 
+  [ a. capture  ]  ( b. decla of  parameter) -> c. return value  {  d. implementon   }(  e. call of lambda );            
+
+  a. capture setings ng lambda. madalas galing
+   sa labas ang variable pedeng by reference o
+   by value
+ 
+  b. normal parameter ng function lambda
+  
+  c. return value ng lambda
+  
+  d. implement dito na gaganap ang main process
+    ex maaces ang variable na declare sa capture
+     or return value dito i execute
+  
+  e. call of lambda, ito ung sa calling function
+    ng lambda
+  
+   note: lambda func ay implementation type
+   kaya may semicolon sa dulo in ;
+*/
+
+
+#include<iostream>
+
+int main( void) {//2
+
+      int x =1, y=2;
+      double d;
+      auto fun = [  x, y ]  ( int a, int b )->void {//2
+
+            std::cout << "\n\nout " << a + b  + x +y << "\n";
+      };//2
+
+      auto f = fun;
+      
+      f(10,20);
+
+      //if no return type u can use ->void instead 
+      //of double
+      d = [ x, y ] (  int a )->double  {
+            std::cout << "\n\nAA inside blank lambda val " << x+y +a ;  
+            return (double) x+y+a;      
+      }(10 );
+      
+      //d variables holds 13 value of lambda function
+      std::cout << "\n\nvalue of d " << d << "\n";             
+      return 0;
+}//2
