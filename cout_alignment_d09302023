@@ -1,0 +1,19 @@
+
+lec 5/6/2023 11pm
+
+kuha info dito para di malimutan lec
+std::left,   left side ung text  (note katambal ito ng setw)
+std::right  right side ung text
+std::internal  same as right
+
+std::fixed  whole number 
+std::scientific, 
+std::hexfloat  hexa
+ std::defaultfloat
+
+std::setprecision  ilang .00 lalabas sa double
+
+std::setw  range ng lapad sa screen
+
+handle ito ng iomanip library
+
