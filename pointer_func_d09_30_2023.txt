@@ -1,0 +1,37 @@
+
+
+
+lec 4/7/2023 4.12p
+
+//pointer function
+#include<iostream>
+
+int ffun( int p ) {//2
+      
+      std::cout << "\n\ninside ffun ";
+      return p+10;
+}//2
+
+void finsert( int (fp)(int), int n ){//2
+
+      std::cout << "\n\ni will call the param func return " << fp(n) ;
+  
+}//2
+
+int main(void ) {//2
+
+      int (*fp)( int p );
+
+      std::cout << "\nffun adres value " <<  (int*) &ffun ;      
+
+      fp = &ffun; //gives ffun his adress to pointer func fp
+     
+      std::cout << "\nvalue fp " << fp( 10 ) ; 
+      
+      std::cout << "\nvalue fp adres value " << (int*) fp ;      
+
+      finsert(&ffun, 30 ); //pasing by parameter func
+
+      std::cout << "\n\nexit...\n"; 
+      return 0;
+}//2
