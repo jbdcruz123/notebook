@@ -1,0 +1,48 @@
+
+prac 4/20/2023 11.7p
+postfix   v++   operator++
+
+#include <iostream>
+
+class clnum{
+      private:
+      int num;
+
+      public:
+
+      clnum(int a );
+
+      clnum operator++(int);
+      int fget();
+
+};
+
+clnum::clnum( int a ){//2
+
+      num = a;
+}//2
+
+int clnum::fget( ){//2
+
+      return num;
+}//2
+
+clnum clnum::operator++(int){//2
+
+      num = num + 1;
+
+      return *this;
+}//2
+
+int main( ){//2
+
+      clnum first(123);
+
+      int r;
+      first++;
+
+      std::cout << "\n\naaresult r "<<  first.fget() << "\n" ;
+
+      std::cout << "\n\nexit"<< "\n" ;
+      return 0;
+}//2
