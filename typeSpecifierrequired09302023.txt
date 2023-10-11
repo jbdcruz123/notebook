@@ -1,0 +1,12 @@
+
+09302023
+error: a type specifier is required for all 
+declarations
+
+Solution: This error occurs when you do not 
+specify the datatype of a variable or you forget
+ to specify the return type of a method or a 
+ function. Specifying the datatype of variables
+  or the return-type of methods is necessary 
+  for C++ because it is a statically-typed 
+  language
