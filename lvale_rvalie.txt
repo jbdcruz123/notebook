@@ -1,0 +1,22 @@
+
+10062023
+“l-value” refers to a memory location that
+ identifies an object. “r-value” refers to the
+  data value that is stored at some address 
+  in memory. References in C++ are nothing
+   but the alternative to the already existing
+    variable. They are declared using the ‘&’
+     before the name of the variable.
+
+Example: 
+
+int a = 10;
+
+// Declaring lvalue reference
+int& lref = a;
+
+// Declaring rvalue reference
+int&& rref = 20;
+
+
+
