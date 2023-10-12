@@ -1,0 +1,34 @@
+
+
+
+
+
+#include<ctime> //hindi under sa std lib
+
+..shortcut ito kunwari na sa execute na tayo ng ctime
+void thread_f( void ){//2
+
+      time_t t_;//int time formates by the compiler
+      tm *tm_; //hahawak sa output time result
+      
+      int c=0;
+      //printw(  "\nL11 ");       
+      while( stop_ != 1 ){//3
+      
+            t_ = std::time( 0 ); //update int tine
+            tm_ = std::localtime( &t_ ); //salin sa tm para output
+            
+            thread_f_Y=19, thread_f_X= 1;             
+            thread_f_s = "time " + std::to_string( tm_->tm_hour)            
+               + " : " + std::to_string( tm_->tm_min) 
+               + " : "  + std::to_string( tm_->tm_sec );   //uses tm_sec  etc...
+           
+            napms(  1000);            
+            thread_f_s = "            ";     
+                                 
+            c+=1;                                    
+      }//3
+      
+}//2
+
+
