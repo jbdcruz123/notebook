@@ -1,0 +1,20 @@
+
+
+10122023
+std::to_string ung format sa float ot double
+
+std::string float_str( double val, int precision){//2
+
+      return std::to_string(  val  ).substr(0, std::to_string(val  ).find( "." ) + precision +1   );             
+
+}//2
+
+template <typename T>
+std::string string_precision(const T a_value, const int n) {//2            
+       std::ostringstream out;
+       out.precision(n);
+       out << std::fixed << a_value;
+       return std::move(out).str();
+}//2
+
+
