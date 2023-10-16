@@ -1,0 +1,333 @@
+10162023
+
+segmentation fault
+
+https://www.google.com/amp/s/www.geeksforgeeks.org/segmentation-fault-c-cpp/amp/
+
+
+Segmentation Fault in C/C++
+Segmentation faults in C or C++ is an error that 
+occurs when a program attempts to access a 
+memory location it does not have permission to 
+access. Generally, this error occurs when 
+memory access is violated and is a type of 
+general protection fault. Segfaults are the 
+abbreviation for segmentation faults.
+
+The core dump refers to the recording of the 
+state of the program, i.e. its resources in 
+memory and processor. Trying to access 
+non-existent memory or memory which is being 
+used by other processes also causes the 
+Segmentation Fault which leads to a core dump.
+
+A program has access to specific regions of 
+memory while it is running. First, the stack is 
+used to hold the local variables for each 
+function. Moreover, it might have memory 
+allocated at runtime and saved on the heap 
+(new in C++ and you may also hear it called 
+the “free store“). The only memory that the 
+program is permitted to access is it’s own 
+(the memory previously mentioned). 
+A segmentation fault will result from any 
+access outside of that region. 
+
+Segmentation fault is a specific kind of error 
+caused by accessing memory that “does not 
+belong to you“:
+
+When a piece of code tries to do a read-and-
+write operation in a read-only location in 
+memory or freed block of memory, it is known 
+as a segmentation fault.
+It is an error indicating memory corruption.
+
+
+Common Segmentation Fault Scenarios
+In a Segmentation fault, a program tries to 
+access memory that is not authorized to 
+access, or that does not exist. Some common 
+scenarios that can cause segmentation faults 
+are:
+
+Modifying a string literal
+Accessing an address that is freed
+Accessing out-of-array index bounds
+Improper use of scanf()
+Stack Overflow 
+Dereferencing uninitialized pointer 
+
+1. Modifying a String Literal
+The string literals are stored in the read-only 
+section of the memory. That is why the below 
+program may crash (gives segmentation fault 
+error) because the line *(str+1) = ‘n’ tries to 
+write a read-only memory.
+
+Example:
+// C program to demonstrate segmentation fault
+// by modifying a string literal
+#include <stdio.h>
+ 
+int main()
+{
+    char* str;
+ 
+    // Stored in read only part of data segment //
+    str = "GfG";
+ 
+    // Problem:  trying to modify read only memory //
+    *(str + 1) = 'n';
+    return 0;
+}
+
+timeout: the monitored command dumped core
+
+/bin/bash: line 1:    32 Segmentation fault      timeout 15s ./83b16132-8565-4cb1-aedb-4eb593442235 < 83b16132-8565-4cb1-aedb-4eb593442235.in
+
+Refer, to Storage for Strings in C for more 
+details.
+
+2. Accessing an Address That is Freed
+Here in the below code, the pointer p is 
+dereferenced after freeing the memory block, 
+which is not allowed by the compiler. Such 
+pointers are called dangling pointers and they 
+produce segment faults or abnormal program 
+termination at runtime.
+
+Example:
+      
+      // C program to demonstrate segmentation fault
+// by Accessing an address that is freed
+#include <stdio.h>
+#include <stdlib.h>
+ 
+
+int main(void)
+{
+
+    // allocating memory to p
+
+    int* p = (int*)malloc(8);
+
+    *p = 100;
+ 
+
+    // deallocated the space allocated to p
+
+    free(p);
+ 
+
+    // core dump/segmentation fault
+
+    //  as now this statement is illegal
+
+    *p = 110;
+
+    printf("%d", *p);
+ 
+
+    return 0;
+}
+Output
+
+Segmentation Fault
+
+
+3. Accessing out-of-bounds Array Index
+In C and C++, accessing an out-of-bounds array
+ index may cause a segmentation fault or other 
+ undefined behavior. There is no boundary 
+ checking for arrays in C and C++. Although in 
+ C++, the use of containers such as with the 
+ std::vector::at() method or with an if() 
+ statement, can prevent out-of-bound errors.
+
+Example:
+
+// C program to demonstrate segmentation
+// fault when array out of bound is accessed.
+#include <stdio.h>
+ 
+
+int main(void)
+{
+
+    int arr[2];
+ 
+
+    // Accessing out of bound
+
+    arr[3] = 10;
+ 
+
+    return (0);
+}
+
+Output
+
+Segmentation Faults
+
+
+4. Improper use of scanf()
+The scanf() function expects the address of a 
+variable as an input. Here in this program n 
+takes a value of 2 and assumes its address as 
+1000. If we pass n to scanf(), input fetched 
+from STDIN is placed in invalid memory 2 
+which should be 1000 instead. This causes 
+memory corruption leading to a Segmentation 
+fault.
+
+
+Example:
+
+// C program to demonstrate segmentation
+// fault when value is passed to scanf
+#include <stdio.h>
+ 
+
+int main()
+{
+
+    int n = 2;
+
+    scanf("%d", n);
+
+    return 0;
+    
+    
+    }
+Output
+
+Segementation Fault
+
+
+5. Stack Overflow
+It’s not a pointer-related problem even code 
+may not have a single pointer. It’s because of 
+running out of memory on the stack. It is also a 
+type of memory corruption that may happen 
+due to large array size, a large number of 
+recursive calls, lots of local variables, etc.
+
+Example:
+
+// C program to illustrate the
+// segmentation fault due to
+// stack overflow
+#include <stdio.h>
+ 
+
+int main()
+{
+
+    int arr[2000000000];
+ 
+
+    return 0;
+}
+Output
+
+Segmentation Fault
+
+
+
+6. Buffer Overflow
+If the data being stored in the buffer is larger 
+than the allocated size of the buffer, a buffer 
+overflow occurs which leads to the 
+segmentation fault. Most of the methods in the 
+C language do not perform bound checking, so 
+buffer overflow happens frequently when we 
+forget to allot the required size to the buffer.
+
+Example:
+
+// C program to illustrate the 
+// segementation fault due to
+// buffer overflow
+#include <stdio.h>
+ 
+
+int main()
+{
+
+    char ref[20] = "This is a long string";
+
+    char buf[10];
+
+    sscanf(ref, "%s", buf);
+
+    return 0;
+}
+Output
+
+Segmentation Fault
+
+
+
+7. Dereferencing an Uninitialized or NULL 
+Pointer. It is a common programming error to 
+dereference an uninitialized pointer (wild 
+pointer), which can result in undefined behavior. 
+When a pointer is used in a context that treats 
+it as a valid pointer and accesses its underlying 
+value, even though it has not been initialized to 
+point to a valid memory location, this error 
+occurs. Data corruption, program errors, or 
+segmentation faults can result from this. 
+Depending on their environment and state when 
+dereferencing, uninitialized pointers may yield 
+different results.
+
+As we know the NULL pointer does not points to any memory location, so dereferencing it will result in a segmentation fault.
+
+Example:
+
+// C program to demonstrate segmentation
+// fault when uninitialized pointer
+// is accessed
+#include <stdio.h>
+ 
+
+int main()
+{
+
+    int* ptr;
+
+    int* nptr = NULL;
+    
+    
+    printf("%d %d", *ptr, *nptr);
+
+    return 0;
+}
+Output
+
+Segmentation Fault
+How to Fix Segmentation Faults?
+We can fix segmentation faults by being 
+careful about the causes mentioned:
+
+Avoid modifying string literals.
+Being careful when using pointers as they are 
+one of the most common causes.
+Considering the buffer and stack size before 
+storing the data to avoid buffer or stack 
+overflow. Checking for bounds before 
+accessing array elements. Use scanf() and 
+printf() carefully to avoid incorrect format 
+specifiers or buffer overflow.
+
+Overall, the cause of the segmentation fault is 
+accessing the memory that does not belong to 
+you in that space. As long as we avoid doing 
+that, we can avoid the segmentation fault. If 
+you cannot find the source of the error even 
+after doing it, it is recommended to use a 
+debugger as it directly leads to the point of 
+error in the program.
+    
