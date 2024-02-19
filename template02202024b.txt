@@ -1,0 +1,34 @@
+class object with template variable
+template variable must be static
+then declare a global template variable
+to be acess in main 
+
+#include<iostream>
+class A {
+public:
+    template<typename V>
+    static V var;
+    void fun(int par) {
+        std::cout << "\npar " << par;
+    }
+    void pri() {
+        std::cout << "\nvar " << var<int>;
+    }
+};
+
+template<typename V>
+V A::var;
+
+int main() {
+    A::var<int> = 10;
+    A a;
+//    a.var<int> = 234;
+    a.pri();
+    
+    std::cout << "\n\nccexit..\n";
+    return 0;
+}
+
+output 
+var  10
+
