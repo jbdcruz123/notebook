@@ -1,0 +1,87 @@
+
+feb 20, 2024 template lecture
+#include<iostream>
+
+//sa datatypes ng template
+//class o typename ung keyword
+template< typename temp_one 
+  , typename temp_two >
+temp_one func_(  temp_two two){//2
+
+        std::cout << "\ninside func_ " << two;            
+        return  two;
+}//2
+int main( void ){//2
+
+        //template function always
+         //use < > para sa category ng 
+         //magiging variable        
+        func_<std::string, std::string>( "hoy" );                      
+        return 0;
+}//2
+
+
+another test
+solo global single variable
+
+#include<iostream>
+
+template<typename T>
+T n;
+
+int main(){
+        n<int> = 10;
+        std::cout << n<int> << " ";    // 10
+        n< int > += 100;
+        
+         n<std::string> = "test only"; 
+        std::cout << n<std::string>  << " "; // 5
+        
+        std::cout << n<int> << " "; //110
+        
+        std::cout << "\n\nexit...aa\n";
+        return 0;
+}
+
+
+another test
+class object with member template
+variable
+
+
+#include<iostream>
+template<typename T>
+class A {
+public:
+    template<typename V>
+    static V var;
+    void fun(T par) {
+        std::cout << "\npar " << par;
+    }
+    void pri() {
+         //needs to use template arguments
+        std::cout << "\nvar " << var<int>;
+    }
+};
+
+template<typename T>
+template<typename V>
+V A<T>::var;
+
+int main() {
+    A<int>::var<int> = 10;
+    A<int> a;
+//    a.var<int> = 234;
+    a.pri();
+    
+    std::cout << "\n\naexit..\n";
+    return 0;
+}
+
+output 
+var  10
+
+
+
+
+
