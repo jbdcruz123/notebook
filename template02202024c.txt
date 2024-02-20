@@ -1,0 +1,35 @@
+
+
+
+nakita ko lng sa chat gpt
+
+#include <iostream>
+
+template <typename T, int N>
+class MyClass {
+public:
+    static constexpr int size = N;
+    T array[N];
+
+    void printSize() {
+        std::cout << "Size of array: " << size << std::endl;
+    }
+};
+
+int main() {
+    MyClass<int, 5> myObj;
+    myObj.printSize();
+
+    return 0;
+}
+
+
+In this example, size is a template variable declared inside 
+the class template MyClass. It depends on the
+template parameter N. When MyClass is 
+instantiated with MyClass<int, 5>, the size
+template variable evaluates to 5. The 
+printSize method prints out the size of the 
+array, demonstrating the usage of the 
+template variable inside the class template 
+object.
