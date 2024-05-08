@@ -1,0 +1,92 @@
+
+             int***   val  declaration
+       symbol       actual               assign
+           val            val                  = int*** malloc
+          *val           val[ ]               = int**  malloc
+          **val         val[  ][  ]          = int*  malloc
+         ***val        val[  ][  ][  ]      = int  valie
+      
+      
+       mag.start sya sa alang asteris
+       ung susunod ay may asteris na
+       
+       ex:
+       declaration
+      int***  val       int** a     int* b 
+       
+       
+      *val  = a
+      val ay value ng double pointer
+      ang a ay value ng double pointer
+      
+       **val  = b
+       
+       another
+       
+       int **a, *b, c
+       
+       c = 10
+       
+       ang a ay aatras ng isa kaya 
+       kaya papasok sa a ay adres ng 
+       single 
+       
+       pointer b
+       a =   &b
+       
+       single pointer a ay aatras ng 1 
+       tatangap lang ng adres ng local 
+       varianle c
+       *a =  &c
+       
+       ang a ay mag give ng value galing
+       local variable c at ipapasa sa c
+       c = **a 
+       
+       another sample
+       
+       int **p,  **c, *b , a = 10
+       
+         b = &a   get ng pointer b ang local 
+                         adres ng a variable
+         
+         
+       c = &b    get ng c ang adres
+                       ng pointer b
+       
+       
+       p = c    valid ito ibibigay ng c ang adres 
+                  value ng pointer b
+                   get ng p ang adress ng pointer b
+                   
+        another sample
+        
+        dedemonstrate dito ang get at give 
+          ng pointer variable
+          
+         int ***v 
+         
+         ***v = tatangap ng pure value ng local
+                      variable ang v
+                      
+         **v   = tatangap ng adress ng local 
+                   variable  ang v         
+                   
+         *v     = tatangap ng adres ng  single pointer ang v
+         
+         v       =   tatangap ng adress ng double
+                     pointer ang v
+                     
+           ang triple pointer v ang mag give ng value    
+           
+                    
+          =    v         mag give ng adress ng double pointer ang v
+          
+          
+          =    *v      mag give ng adres ng single pointer ang v
+          
+          
+          =     **v    mag give ng adres ng local variable ang v
+          
+          
+          =     ***v     mag give ng value ng local variable ang v
